@@ -1,0 +1,359 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Fiken 1.17\n"
+"POT-Creation-Date: 2014-12-18 23:22+0200\n"
+"PO-Revision-Date: 2014-12-18 23:27+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: en_US\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.7.1\n"
+"X-Poedit-Basepath: ../\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_x;_n:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: ../classes/class.fiken.php:33
+msgid "Fiken orders and settings"
+msgstr ""
+
+#: ../classes/class.fiken.php:33 ../views/view.php:59
+msgid "Settings"
+msgstr ""
+
+#: ../classes/controller.php:138 ../classes/controller.php:141
+msgid "Authentication failed"
+msgstr ""
+
+#: ../classes/controller.php:276 ../classes/controller.php:299
+msgid "Order id not set!"
+msgstr ""
+
+#: ../classes/controller.php:291 ../classes/model/sale.php:306
+#, php-format
+msgid "The transfer order id: %s successfully completed"
+msgstr ""
+
+#: ../classes/controller.php:294
+msgid "Unknown error"
+msgstr ""
+
+#: ../classes/model/customer.php:195
+#, php-format
+msgid "Customer name or email not set for order id: %s !"
+msgstr ""
+
+#: ../classes/model/customer.php:199
+#, php-format
+msgid "Can not add customer from order id: %s !"
+msgstr ""
+
+#: ../classes/model/sale.php:229
+#, php-format
+msgid "Error attachment invoice id=%s  (\"%s\")!"
+msgstr ""
+
+#: ../classes/model/sale.php:264
+#, php-format
+msgid "Order id: %s not found!"
+msgstr ""
+
+#: ../classes/model/sale.php:278
+msgid "Default company not found!"
+msgstr ""
+
+#: ../classes/model/sale.php:285
+#, php-format
+msgid "Order status for payment module \"%s\" not set!"
+msgstr ""
+
+#: ../classes/model/sale.php:298
+#, php-format
+msgid "Sale not found (\"%s\")!"
+msgstr ""
+
+#: ../classes/model/sale.php:321
+#, php-format
+msgid "Order id: %s not in the expected state!"
+msgstr ""
+
+#: ../classes/model/sale.php:343
+#, php-format
+msgid "Account for payment module \"%s\" not found!"
+msgstr ""
+
+#: ../classes/model/sale.php:348
+#, php-format
+msgid "Sale type for payment extension \"%s\" not found!"
+msgstr ""
+
+#: ../classes/model/sale.php:384
+#, php-format
+msgid "Can not add customer from order id=%s !"
+msgstr ""
+
+#: ../classes/model/sale.php:393
+#, php-format
+msgid "Can not register order id: %s !"
+msgstr ""
+
+#: ../classes/provider.php:18
+msgid "Cash sale"
+msgstr ""
+
+#: ../classes/provider.php:19
+msgid "External invoice"
+msgstr ""
+
+#: ../fiken.php:72
+msgid "Fiken requires WooCommerce to be installed!"
+msgstr ""
+
+#: ../pdf/html_invoice.php:14 ../pdf/html_invoice.php:255
+#: ../pdf/html_invoice.php:262
+msgid "Invoice"
+msgstr ""
+
+#: ../pdf/html_invoice.php:270
+msgid "Invoice Number:"
+msgstr ""
+
+#: ../pdf/html_invoice.php:273
+msgid "Invoice Date:"
+msgstr ""
+
+#: ../pdf/html_invoice.php:276
+msgid "Order Number:"
+msgstr ""
+
+#: ../pdf/html_invoice.php:278
+msgid "Order Date:"
+msgstr ""
+
+#: ../pdf/html_invoice.php:280
+msgid "Payment Method:"
+msgstr ""
+
+#: ../pdf/html_invoice.php:292
+msgid "Product"
+msgstr ""
+
+#: ../pdf/html_invoice.php:293
+msgid "Quantity"
+msgstr ""
+
+#: ../pdf/html_invoice.php:294
+msgid "Price"
+msgstr ""
+
+#: ../pdf/html_invoice.php:302
+msgid "Description"
+msgstr ""
+
+#: ../pdf/html_invoice.php:307
+msgid "SKU:"
+msgstr ""
+
+#: ../pdf/html_invoice.php:311
+msgid "Weight:"
+msgstr ""
+
+#: ../pdf/html_invoice.php:332
+msgid "Customer Notes"
+msgstr ""
+
+#: ../views/view.php:19
+#, php-format
+msgid "The order marked as %s. Are you sure?"
+msgstr ""
+
+#: ../views/view.php:20
+msgid "Nothing selected!"
+msgstr ""
+
+#: ../views/view.php:21
+msgid "Transfer selected orders successfully completed"
+msgstr ""
+
+#: ../views/view.php:57
+msgid "Orders"
+msgstr ""
+
+#: ../views/view.php:76
+msgid "Date Start"
+msgstr ""
+
+#: ../views/view.php:89
+msgid "Date End"
+msgstr ""
+
+#: ../views/view.php:103 ../views/view.php:344
+msgid "Order Status"
+msgstr ""
+
+#: ../views/view.php:108
+msgid "All statuses"
+msgstr ""
+
+#: ../views/view.php:135
+msgid "Filter"
+msgstr ""
+
+#: ../views/view.php:153
+msgid "Order ID"
+msgstr ""
+
+#: ../views/view.php:160
+msgid "Customer"
+msgstr ""
+
+#: ../views/view.php:167 ../views/view.php:241
+msgid "Status"
+msgstr ""
+
+#: ../views/view.php:174
+msgid "Total"
+msgstr ""
+
+#: ../views/view.php:182
+msgid "Date Added"
+msgstr ""
+
+#: ../views/view.php:189 ../views/view.php:242
+msgid "Date Modified"
+msgstr ""
+
+#: ../views/view.php:195
+msgid "Transfer selected orders"
+msgstr ""
+
+#: ../views/view.php:198
+msgid "Select all"
+msgstr ""
+
+#: ../views/view.php:224
+msgid "View statuses history"
+msgstr ""
+
+#: ../views/view.php:228
+msgid "Transfer"
+msgstr ""
+
+#: ../views/view.php:243
+msgid "Message"
+msgstr ""
+
+#: ../views/view.php:255
+msgid "No orders!"
+msgstr ""
+
+#: ../views/view.php:286 ../views/view.php:289
+msgid "Login"
+msgstr ""
+
+#: ../views/view.php:295 ../views/view.php:298
+msgid "Password"
+msgstr ""
+
+#: ../views/view.php:306
+msgid "Refresh"
+msgstr ""
+
+#: ../views/view.php:314
+msgid "Company"
+msgstr ""
+
+#: ../views/view.php:318
+msgid "No companies"
+msgstr ""
+
+#: ../views/view.php:320
+msgid "Select company :"
+msgstr ""
+
+#: ../views/view.php:337
+msgid "Accounts"
+msgstr ""
+
+#: ../views/view.php:342
+msgid "Payment method"
+msgstr ""
+
+#: ../views/view.php:343
+msgid "Account"
+msgstr ""
+
+#: ../views/view.php:345
+msgid "Fiken Sale Type"
+msgstr ""
+
+#: ../views/view.php:365
+msgid "No accounts"
+msgstr ""
+
+#: ../views/view.php:367
+msgid "Select account :"
+msgstr ""
+
+#: ../views/view.php:389
+msgid "No statuses"
+msgstr ""
+
+#: ../views/view.php:391
+msgid "Select order status :"
+msgstr ""
+
+#: ../views/view.php:413
+msgid "No sale types"
+msgstr ""
+
+#: ../views/view.php:415
+msgid "Select sale type :"
+msgstr ""
+
+#: ../views/view.php:434
+msgid "No payment plugins installed"
+msgstr ""
+
+#: ../views/view.php:448
+msgid "VAT Mapping"
+msgstr ""
+
+#: ../views/view.php:454
+msgid "Tax Class"
+msgstr ""
+
+#: ../views/view.php:455
+msgid "Fiken VAT Type"
+msgstr ""
+
+#: ../views/view.php:469
+msgid "No Fiken VAT codes"
+msgstr ""
+
+#: ../views/view.php:471
+msgid "Select VAT code :"
+msgstr ""
+
+#: ../views/view.php:488
+msgid "No taxes!"
+msgstr ""
+
+#: ../views/view.php:500
+msgid "Attach invoice (*.pdf)"
+msgstr ""
+
+#: ../views/view.php:504 ../views/view.php:507
+msgid "Enabled"
+msgstr ""
+
+#: ../views/view.php:505 ../views/view.php:508
+msgid "Disabled"
+msgstr ""
+
+#: ../views/view.php:515
+msgid "Save"
+msgstr ""

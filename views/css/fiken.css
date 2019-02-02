@@ -1,0 +1,420 @@
+#fiken-wrapper {
+    font-family: "Open Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    margin: 20px 10px 20px 0;
+}
+
+#fiken-wrapper .text-center{
+    text-align: center;
+}
+
+#fiken-wrapper .alert-info {
+    background-color: #f8fcfe;
+    border: 1px solid #c5e9f3;
+    color: #31b0d5;
+    padding-left: 50px;
+    padding: 10px;
+    height: 50px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), 0 0 0 3px #fff inset;
+    border-radius: 5px;
+    float: left;
+    width: 98%;
+}
+#fiken-wrapper .alert-info h2{
+    color: #31b0d5;
+    margin: 13px;
+}
+
+
+#fiken-wrapper .img-logo {
+    float: left;
+    margin: 8px 15px;
+}
+
+.alert img.alert_img {
+    vertical-align: middle!important;
+    margin-right: 10px;
+}
+
+#fiken-wrapper .panel {
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #e6e6e6;
+    border-radius: 5px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1), 0 0 0 3px #fff inset;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    color: #585a69;
+    float: left;
+    width: 98%;
+}
+
+
+#fiken-wrapper .nav-tabs {
+    list-style: outside none none;
+    display: table;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #dddddd;
+    padding-left: 0;
+    width: 100%;
+}
+
+#fiken-wrapper a {
+    text-decoration: none;
+    background: none repeat scroll 0 0 transparent;
+}
+
+#fiken-wrapper .nav-tabs > li {
+    float: left;
+    margin-bottom: -1px;
+    display: block;
+    position: relative;
+    border-radius: 5px;
+}
+
+#fiken-wrapper .nav-tabs > li > a:hover {
+    border-color: #eee #eee #ddd;
+}
+
+#fiken-wrapper .nav-tabs > li.active > a, #fiken-wrapper .nav-tabs > li.active > a:hover, #fiken-wrapper .nav-tabs > li.active > a:focus {
+    -moz-border-bottom-colors: none;
+    -moz-border-left-colors: none;
+    -moz-border-right-colors: none;
+    -moz-border-top-colors: none;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border-color: #dddddd #dddddd transparent;
+    border-style: solid;
+    border-width: 1px;
+    color: #333;
+    font-weight: bold;
+    cursor: default;
+}
+
+#fiken-wrapper .nav-tabs > li > a {
+    display: block;
+    padding: 10px 15px;
+    position: relative;
+    color: #666;
+}
+
+#fiken-wrapper .nav-tabs > li > a:hover {
+    background-color: #EEEEEE;
+}
+
+#fiken-wrapper .tab-content > .tab-pane {
+    display: none;
+}
+
+#fiken-wrapper .tab-content > .active {
+    display: block;
+}
+
+
+#fiken-wrapper .panel.filtering {
+    background-color: #f5f5f5;
+}
+
+#fiken-wrapper .form.filtering span {
+    color: #333;
+}
+
+#fiken-wrapper .form-control {
+    padding: 8px;
+    border-radius: 5px;
+    color: #555555;
+}
+
+#fiken-wrapper .input-group {
+    border-collapse: separate;
+    display: table;
+    position: relative;
+}
+
+#fiken-wrapper .tab-content .filtering td {
+    padding: 0 30px 5px 0;
+}
+
+#fiken-wrapper .tab-content .form span {
+    font-weight: bold;
+    line-height: 30px;
+}
+
+#fiken-wrapper .filtering input {
+    min-width: 150px;
+}
+
+#fiken-wrapper .tab-content td select {
+    min-width: 190px;
+    font-size: inherit;
+}
+
+#fiken-wrapper button {
+    padding: 8px 13px 8px 35px;
+    text-align: right;
+    font-weight: bold;
+    color: #31b0d5;
+}
+
+
+
+#fiken-wrapper .cmd-filter {
+    background: url("../img/filter_16x16.png") no-repeat 10px 10px;
+    margin-top: 25px;
+}
+
+#fiken-wrapper .img-input {
+    padding: 0 4px;
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+#fiken-wrapper .text-center {
+    text-align: center;
+}
+
+#fiken-wrapper .text-left {
+    text-align: left;
+}
+
+#fiken-wrapper .text-right {
+    text-align: right;
+}
+
+#fiken-wrapper .table {
+    width: 100%;
+    border: none;
+}
+
+#fiken-wrapper .table thead > tr > td, .table tbody > tr > td {
+    vertical-align: middle;
+    padding: 15px 8px 15px 10px;
+    font-weight: bold;
+    color: #333;
+}
+
+#fiken-wrapper .table a {
+    color: #1e91cf;
+    text-decoration: none;
+}
+
+#fiken-wrapper .table-order a.desc:after {
+    content: " " url("../img/arrow_up_10x10.png");
+}
+
+#fiken-wrapper .table-order a.asc:after {
+    content: " " url("../img/arrow_down_10x10.png");
+}
+
+#fiken-wrapper .img_button {
+    cursor: pointer;
+    display: inline-block;
+    height: 24px;
+    width: 24px;
+    margin-left: 5px;
+
+}
+
+#fiken-wrapper .img_button.transfer {
+    background: url("../img/transfer_24x24.png") no-repeat;
+}
+
+#fiken-wrapper .img_button.check {
+    background: url("../img/check_24x24.png") no-repeat;
+}
+
+#fiken-wrapper .img_button.check_empty {
+    background: url("../img/check_empty_24x24.png") no-repeat;
+}
+
+#fiken-wrapper .img_button.view_status_history {
+    background: url("../img/filter_24x24.png") no-repeat;
+}
+
+#fiken-wrapper .img_button.ajax-loader {
+    background: url("../img/ajax-loader.gif") no-repeat;
+    background-size: 24px;
+}
+
+
+#fiken-wrapper .table tr td {
+    border-bottom: 1px solid #ccc;
+    /*color: #666666;*/
+    font-size: 13px;
+    padding: 10px;
+}
+
+#fiken-wrapper .table tbody > tr > td {
+    font-weight: normal;
+    color: inherit;
+}
+
+/******************settings**********************************/
+
+#fiken-wrapper select option {
+    color: #333;
+}
+
+#fiken-wrapper label.required:before {
+    color: #f00;
+    content: "* ";
+    font-weight: bold;
+}
+
+#fiken-wrapper .control-label {
+    text-align: left;
+    width: 15%;
+    margin-top: 6px;
+}
+
+#fiken-wrapper .col-two-thirds {
+    float: left;
+    position: relative;
+    width: 83%;
+}
+
+#fiken-wrapper .col-two-thirds .form-control {
+    width: 100%
+}
+
+#fiken-wrapper .cmd-refresh {
+    background: url("../img/refresh_16x16.png") no-repeat 10px 10px;
+}
+
+#fiken-wrapper .settings_sel {
+    height: 37px;
+}
+
+#fiken-wrapper .settings_sel option.selected {
+    font-weight: bold;
+}
+
+#fiken-wrapper .settings_sel option.alert_select {
+    color: red;
+}
+
+#fiken-wrapper .alert-success {
+    background-color: #ecf3e6;
+    border-color: #e3ebd5;
+    color: #8fbb6c;
+}
+
+#fiken-wrapper .alert-danger {
+    background-color: #fef1f1;
+    border-color: #fcd9df;
+    color: #f56b6b;
+}
+
+#fiken-wrapper .alert-warning {
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+    color: #8a6d3b;
+}
+
+#fiken-wrapper .alert {
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 10px;
+    position: relative;
+}
+
+#fiken-wrapper .alert .close {
+    background: none repeat scroll 0 0 transparent;
+    min-width: 0;
+    border: 0 none;
+    color: #000000;
+    float: right;
+    font-size: 18px;
+    font-weight: bold;
+    opacity: 0.2;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    position: absolute;
+    right: 7px;
+    top: 0;
+}
+
+#fiken-wrapper .table-history{
+    width: auto;
+    margin-bottom: 20px;
+}
+
+#fiken-wrapper .cmd-save {
+    background: url("../img/save_16x16.png") no-repeat 10px 10px;
+    float: right;
+    /*margin-right: 10px;*/
+}
+
+#fiken-wrapper .pagination > ul {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+#fiken-wrapper .pagination > li {
+    display: inline;
+}
+
+#fiken-wrapper .pagination > li > a, #fiken-wrapper .pagination > li > span {
+    color: #1e91cf;
+    float: left;
+    padding: 8px 13px;
+    text-decoration: none;
+}
+
+#fiken-wrapper .pagination > .active > a,
+#fiken-wrapper .pagination > .active > span,
+#fiken-wrapper .pagination > .active > a:hover,
+#fiken-wrapper .pagination > .active > span:hover,
+#fiken-wrapper .pagination > .active > a:focus,
+#fiken-wrapper .pagination > .active > span:focus {
+    background-color: #1e91cf;
+    color: #ffffff;
+    cursor: default;
+    z-index: 2;
+}
+
+#fiken-wrapper .pagination > li > a:hover,
+#fiken-wrapper .pagination > li > span:hover,
+#fiken-wrapper .pagination > li > a:focus,
+#fiken-wrapper .pagination > li > span:focus {
+    background-color: #eeeeee;
+    border-color: #dddddd;
+    color: #14628c;
+}
+
+#fiken-wrapper button {
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#fiken-wrapper .form-group {
+    clear: both;
+    margin-bottom: 1em;
+    width: 100%;
+    float: left;
+}
+#fiken-wrapper label {
+    color: #333;
+    float: left;
+    font-weight: bold;
+    padding: 0.2em 0.5em 0 0;
+    text-shadow: 0 1px 0 #fff;
+    cursor: auto;
+}
+
+#fiken-wrapper input, #fiken-wrapper select{
+    font-size: 13px;
+    height: inherit;
+}
+
+#fiken-wrapper .form.filtering span {
+    margin-left: 5px;
+}
+#fiken-wrapper .alert ul {
+    list-style:inherit!important;
+    margin-left: 30px;
+}
