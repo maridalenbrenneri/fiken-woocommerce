@@ -398,8 +398,8 @@ if (!class_exists('FikenSale')) {
             foreach ($order_products as $product) {
                 $lines[] = array(
                     "description" => $product['qty'] . " x " . $product['name'],
-                    "netPrice" => FikenUtils::moneyToCent($product['line_total']),
-                    "vat" => FikenUtils::moneyToCent(floatval($product['line_tax'])),
+                    "netPrice" => floatval($product['line_total']),
+                    "vat" => floatval($product['line_tax']),
                     //"incomeAccount" => "3000",
                     "vatType" => FikenProvider::getVatCode($product)
                 );
@@ -432,7 +432,7 @@ if (!class_exists('FikenSale')) {
                                     $taxTotalValue = floatval($taxValue);
                                 }
 
-                                $shipVat = FikenUtils::moneyToCent($taxTotalValue);
+                                $shipVat = floatval($taxTotalValue);
                                 $shipping_method_id = preg_replace('/:.*/', '', $shipping_item['method_id']);
                                 $shipVatType = FikenProvider::getVatCodeForShipping($shipping_method_id);
                                 /**
@@ -445,7 +445,7 @@ if (!class_exists('FikenSale')) {
 
                     $lines[] = array(
                         "description" => $shipping_item['name'],
-                        "netPrice" => FikenUtils::moneyToCent($shipping_item['cost']),
+                        "netPrice" => floatval($shipping_item['cost']),
                         "vat" => $shipVat,
                         "incomeAccount" => "3090",
                         "vatType" => (($shipVat > 0) && ($shipVatType == FikenUtils::VAT_NONE) ? FikenUtils::VAT_HIGH : $shipVatType)
@@ -463,10 +463,10 @@ if (!class_exists('FikenSale')) {
              */
             foreach ($order->get_fees() as $fee_item) {
                 if ($fee_item['total']) {
-                    $totalTax = FikenUtils::moneyToCent(floatval($fee_item['total_tax']));
+                    $totalTax = floatval($fee_item['total_tax']);
                     $lines[] = array(
                         "description" => $fee_item['name'],
-                        "netPrice" => FikenUtils::moneyToCent($fee_item['total']),
+                        "netPrice" => floatval($fee_item['total']),
                         "vat" => $totalTax,
                         "vatType" => ($totalTax > 0 ? FikenUtils::VAT_HIGH : FikenUtils::VAT_NONE)
                     );
@@ -530,7 +530,17 @@ if (!class_exists('FikenSale')) {
              */
             $packedLines = array_values($packedLines);
 
-            $sale->setLines($packedLines);
+            /**
+             * Convert all money values to fixed point
+             */
+            $lines = array();
+            foreach ($packedLines as $line) {
+                $line['netPrice'] = FikenUtils::moneyToCent($line['netPrice']);
+                $line['vat'] = FikenUtils::moneyToCent($line['vat']);
+                array_push($lines, $line);
+            }
+
+            $sale->setLines($lines);
             $sale->setKind($saleKind);
             $sale->setPaymentAccount($acc);
             $sale->setPaymentDate($sale->getDate());
