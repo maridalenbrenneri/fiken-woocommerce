@@ -6,7 +6,7 @@ if (!class_exists('FikenUtils')) {
 
     class FikenUtils
     {
-        const FIKEN_VERSION = "1.17-MB";
+        const FIKEN_VERSION = "1.17-MB-2";
 
         const ACC_FILTER = "/^19[26]0:/";
         const FIKEN_BASE_URL = "https://fiken.no/api/v1";

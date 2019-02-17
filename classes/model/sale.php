@@ -396,10 +396,18 @@ if (!class_exists('FikenSale')) {
 
             $lines = array();
             foreach ($order_products as $product) {
+
+                if ( 'yes' === get_option( 'woocommerce_tax_round_at_subtotal' ) ) {
+                    $netPrice = floatval($product['line_total']);
+                    $vat = floatval($product['line_tax']);
+                } else {
+                    $netPrice = wc_round_tax_total($product['line_total']);
+                    $vat = wc_round_tax_total($product['line_tax']);
+                }
                 $lines[] = array(
                     "description" => $product['qty'] . " x " . $product['name'],
-                    "netPrice" => floatval($product['line_total']),
-                    "vat" => floatval($product['line_tax']),
+                    "netPrice" => $netPrice,
+                    "vat" => $vat,
                     //"incomeAccount" => "3000",
                     "vatType" => FikenProvider::getVatCode($product)
                 );
@@ -432,7 +440,7 @@ if (!class_exists('FikenSale')) {
                                     $taxTotalValue = floatval($taxValue);
                                 }
 
-                                $shipVat = floatval($taxTotalValue);
+                                $shipVat = wc_round_tax_total($taxTotalValue);
                                 $shipping_method_id = preg_replace('/:.*/', '', $shipping_item['method_id']);
                                 $shipVatType = FikenProvider::getVatCodeForShipping($shipping_method_id);
                                 /**
@@ -445,7 +453,7 @@ if (!class_exists('FikenSale')) {
 
                     $lines[] = array(
                         "description" => $shipping_item['name'],
-                        "netPrice" => floatval($shipping_item['cost']),
+                        "netPrice" => wc_round_tax_total($shipping_item['cost']),
                         "vat" => $shipVat,
                         "incomeAccount" => "3090",
                         "vatType" => (($shipVat > 0) && ($shipVatType == FikenUtils::VAT_NONE) ? FikenUtils::VAT_HIGH : $shipVatType)
@@ -463,10 +471,10 @@ if (!class_exists('FikenSale')) {
              */
             foreach ($order->get_fees() as $fee_item) {
                 if ($fee_item['total']) {
-                    $totalTax = floatval($fee_item['total_tax']);
+                    $totalTax = wc_round_tax_total(floatval($fee_item['total_tax']));
                     $lines[] = array(
                         "description" => $fee_item['name'],
-                        "netPrice" => floatval($fee_item['total']),
+                        "netPrice" => wc_round_tax_total($fee_item['total']),
                         "vat" => $totalTax,
                         "vatType" => ($totalTax > 0 ? FikenUtils::VAT_HIGH : FikenUtils::VAT_NONE)
                     );
