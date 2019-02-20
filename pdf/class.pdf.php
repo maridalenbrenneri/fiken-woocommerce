@@ -103,12 +103,13 @@ if (!class_exists('FikenPDF')) {
 
         public function generate_pdf($fileName)
         {
-            if (!class_exists('DOMPDF')) {
-                require_once(FIKEN_PLUGIN_DIR . "pdf/lib/dompdf/dompdf_config.inc.php");
+            if (!class_exists('Dompdf')) {
+                require_once(FIKEN_PLUGIN_DIR . "pdf/lib/dompdf/autoload.inc.php");
             }
-            $dompdf = new DOMPDF();
-            $dompdf->load_html(FikenHtmlInvoice::getHtmlInvoice($this->getViewData()));
-            $dompdf->set_paper('a4', 'portrait');
+
+            $dompdf = new Dompdf\Dompdf();
+            $dompdf->loadHtml(FikenHtmlInvoice::getHtmlInvoice($this->getViewData()));
+            $dompdf->set_Paper('A4', 'portrait');
             $dompdf->render();
             file_put_contents($fileName, $dompdf->output());
             return file_exists($fileName);

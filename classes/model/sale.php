@@ -227,11 +227,11 @@ if (!class_exists('FikenSale')) {
                 $attachFileName = 'inv_' . $wcOrderId . ".pdf";
                 $saleAtt = array();
                 $saleAtt['filename'] = $attachFileName;
-                $saleAtt['attachToPayment'] = 'false';
-                $saleAtt['attachToSale'] = 'true';
+                $saleAtt['attachToPayment'] = true;
+                $saleAtt['attachToSale'] = true;
                 $data = array();
                 $data['SaleAttachment'] = stripslashes(json_encode($saleAtt) . ';type=application/json');
-                $data['AttachmentFile'] = '@' . $filename . ';filename=' . $attachFileName . ';type=application/pdf';
+                $data['AttachmentFile'] = new CURLFile($filename, 'application/pdf', $attachFileName);
                 $result = FikenUtils::call($this->getRelAttachments(), $data, false);
                 unlink($filename);
                 if (!$result || !isset($result['location'])) {
@@ -322,12 +322,9 @@ if (!class_exists('FikenSale')) {
                                     throw new Exception(sprintf(__('Sale not found ("%s")!', 'fiken'), $relNewSale));
                                 }
 
-                                /**
-                                 * 2015.10.18 - disable "attach invoice" feature
-                                 * if (get_option(FikenUtils::CONF_FIKEN_PDF_INV)) {
-                                 * $newSale->uploadAttachment($order);
-                                 * }
-                                 */
+                                if (get_option(FikenUtils::CONF_FIKEN_PDF_INV) || true) {
+                                    $newSale->uploadAttachment($order);
+                                }
 
                                 return $ajax ? array('success' => sprintf(__('The transfer order id: %s successfully completed', 'fiken'), $wcOrderId)) : true;
 
