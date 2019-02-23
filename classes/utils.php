@@ -38,7 +38,6 @@ if (!class_exists('FikenUtils')) {
         const CONF_FIKEN_COMPANY = 'fiken_v1_company';
         const CONF_FIKEN_PAY_METHODS = 'fiken_v1_pay_methods';
         const CONF_FIKEN_VATS_MAPPING = 'fiken_v1_vats_mapping';
-        const CONF_FIKEN_SHIPPING_METHODS = 'fiken_v1_shipping_methods';
         const CONF_FIKEN_PDF_INV = 'fiken_v1_pdf_inv';
         const CONF_FIKEN_DEBUG_MODE = 'fiken_v1_debug_mode';
 
@@ -46,7 +45,6 @@ if (!class_exists('FikenUtils')) {
         const CTRL_NAME_PAY_STATUS = 'fiken_pay_status_';
         const CTRL_NAME_SALE_KIND = 'fiken_sale_kind_';
         const CTRL_NAME_VAT = 'fiken_vat_';
-        const CTRL_NAME_SHIPPING = 'fiken_shipping_';
         const CTRL_NAME_LOGIN = 'fiken_login';
         const CTRL_NAME_PASSW = 'fiken_passw';
         const CTRL_NAME_COMPANY = 'fiken_company';

@@ -33,16 +33,6 @@ if (!class_exists('FikenProvider')) {
             );
         }
 
-        public static function getVatTypesFikenForShipping()
-        {
-            return array(
-                array("code" => FikenUtils::VAT_HIGH, "name" => FikenUtils::VAT_HIGH),
-                array("code" => FikenUtils::VAT_MEDIUM, "name" => FikenUtils::VAT_MEDIUM),
-                array("code" => FikenUtils::VAT_NONE, "name" => FikenUtils::VAT_NONE),
-            );
-        }
-
-
         public static function getStatesFiken($id_state = '')
         {
             global $wpdb;
@@ -63,19 +53,6 @@ if (!class_exists('FikenProvider')) {
             $res[] = array('id' => 'free_order', 'name' => 'Free order');
             return $res;
         }
-
-        public static function getListShippingWC()
-        {
-            global $woocommerce;
-            $res = array();
-            foreach ($woocommerce->shipping->get_shipping_methods() as $item) {
-                if ($item->enabled == 'yes') {
-                    $res[] = array('id' => $item->id, 'name' => ($item->title ?: $item->method_title));
-                }
-            }
-            return $res;
-        }
-
 
         public static function getOrderStatesWC()
         {
@@ -99,6 +76,7 @@ if (!class_exists('FikenProvider')) {
                 $tax = array();
                 $tax['id'] = $item['tax_rate_id'];
                 $tax['name'] = $item['tax_rate_name'] . ' (' . number_format((float)$item['tax_rate'], 2, ',', '') . ' %)';
+                $tax['rate'] = floatval($item['tax_rate']);
                 $ret[] = $tax;
             }
             return $ret;
@@ -133,20 +111,19 @@ if (!class_exists('FikenProvider')) {
            return $res;
         }
 
-
-        public static function getVatCodeForShipping($method_id)
+        public static function calculateVatCode($cost, $vat)
         {
-            $res = FikenUtils::VAT_NONE;
-            $shippingMethods = json_decode(get_option(FikenUtils::CONF_FIKEN_SHIPPING_METHODS));
-            FikenUtils::log(var_export($shippingMethods, true), 'Shipping debug: settings', FikenUtils::LOG_LEVEL_INFO);
-            if (isset($shippingMethods)) {
-                if (isset($method_id)
-                    && isset($shippingMethods->{$method_id}->{FikenUtils::CTRL_NAME_SHIPPING})
-                    && $shippingMethods->{$method_id}->{FikenUtils::CTRL_NAME_SHIPPING}) {
-                    $res = $shippingMethods->{$method_id}->{FikenUtils::CTRL_NAME_SHIPPING};
+            $vatRate = 100 * $vat / $cost;
+            $taxes = self::getTaxesWC();
+            // FikenUtils::log(var_export($taxes, true), 'VAT rates', FikenUtils::LOG_LEVEL_INFO);
+            foreach ($taxes as $tax){
+                $diff = abs($tax['rate'] - $vatRate);
+                if ($diff < 0.01){
+                    return self::getVatCodeByTaxCode($tax['id']);
                 }
             }
-            return $res;
+
+            throw new Exception(sprintf(__('No WooCommerce tax rate matches calculated rate %0.2f', 'fiken', $vatRate)));
         }
 
         public static function getVatCodeByTaxCode($taxCode)

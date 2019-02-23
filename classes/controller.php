@@ -42,8 +42,6 @@ if (!class_exists('FikenController')) {
             $data['companies'] = FikenCompany::getCompaniesFromFiken();
             //paylist
             $data['list_pay'] = FikenProvider::getListPayWC();
-            //shipping list
-            $data['list_shipping'] = FikenProvider::getListShippingWC();
             //accounts
             $data['accounts'] = FikenAccount::getAccountsFromFiken(get_option(FikenUtils::CONF_FIKEN_COMPANY), FikenUtils::ACC_FILTER);
             //order satatuses
@@ -52,8 +50,6 @@ if (!class_exists('FikenController')) {
             $data['list_sales_kind_fiken'] = FikenProvider::getSalesKindFiken();
             //fiken vat codes
             $data['list_vat_types_fiken'] = FikenProvider::getVatTypesFiken();
-            //fiken vat codes for shipping
-            $data['list_vat_types_fiken_for_shipping'] = FikenProvider::getVatTypesFikenForShipping();
             //taxes
             $data['list_taxes_ps'] = FikenProvider::getTaxesWC();
             //fikenStates
@@ -83,8 +79,6 @@ if (!class_exists('FikenController')) {
 
                 update_option(FikenUtils::CONF_FIKEN_VATS_MAPPING, json_encode(FikenUtils::parseDataFromPost(FikenUtils::CTRL_NAME_VAT)));
 
-                update_option(FikenUtils::CONF_FIKEN_SHIPPING_METHODS, json_encode(FikenUtils::parseDataFromPost(FikenUtils::CTRL_NAME_SHIPPING)));
-
                 update_option(FikenUtils::CONF_FIKEN_DEBUG_MODE, FikenUtils::getValue(FikenUtils::CTRL_NAME_DEBUG_MODE));
             }
         }
@@ -104,7 +98,6 @@ if (!class_exists('FikenController')) {
             $selectedPayStatuses = array();
             $selectedSalesKind = array();
             $selectedVat = array();
-            $selectedShipping = array();
 
             $res = json_decode(get_option(FikenUtils::CONF_FIKEN_PAY_METHODS));
 
@@ -123,74 +116,13 @@ if (!class_exists('FikenController')) {
                 }
             }
 
-            $res = json_decode(get_option(FikenUtils::CONF_FIKEN_SHIPPING_METHODS));
-            if ($res) {
-                foreach ($res as $key => $value) {
-                    $selectedShipping[FikenUtils::CTRL_NAME_SHIPPING . $key] = $value->{FikenUtils::CTRL_NAME_SHIPPING};
-                }
-            }
-
             $data['selectedAccounts'] = $selectedAccounts;
             $data['selectedPayStatuses'] = $selectedPayStatuses;
             $data['selectedSalesKind'] = $selectedSalesKind;
             $data['selectedVat'] = $selectedVat;
-            $data['selectedShipping'] = $selectedShipping;
 
             $data = array_merge($data, $this->checkLogin($data['login'], $data['password']));
 
-            if (version_compare(WC_VERSION, '2.6') >= 0) {
-                $data = array_merge($data, $this->checkShipping($data['selectedShipping']));
-            }
-
-            return $data;
-        }
-
-        /**
-         * Checking for consistency fiken shipping settings and woo shipping settings
-         *
-         * @param array $selectedShipping
-         * @return array
-         */
-        private function checkShipping($selectedShipping)
-        {
-            $data = array();
-
-            /**
-             * Collect all the shipping option
-             */
-            $options = array();
-            $wordWide = new WC_Shipping_Zone(0);
-            $methods = array();
-            foreach ($wordWide->get_shipping_methods() as $item) {
-                $methods[] = array($item->id => $item->tax_status);
-            }
-            $options[$wordWide->get_zone_name()] = $methods;
-
-            $zones = WC_Shipping_Zones::get_zones();
-            foreach ($zones as $zone) {
-                $methods = array();
-                foreach ($zone['shipping_methods'] as $item) {
-                    $methods[] = array($item->id => $item->tax_status);
-                }
-                $options[$zone['zone_name']] = $methods;
-            }
-
-            /**
-             * Check for consistency
-             */
-            $prefixLength = strlen('fiken_shipping_');
-            foreach ($options as $zone => $methods) {
-                foreach ($methods as $method) {
-                    foreach ($selectedShipping as $key => $itemSelectedShipping) {
-                        $wcShippingCode = substr($key, $prefixLength);
-                        if ($wcShippingCode && array_key_exists($wcShippingCode, $method)
-                            && (($method[$wcShippingCode] === 'none' && $itemSelectedShipping !== FikenUtils::VAT_NONE) || ($method[$wcShippingCode] !== 'none' && $itemSelectedShipping === FikenUtils::VAT_NONE))
-                        ) {
-                            $data['warning'] = sprintf(__('Please be advised the module tax option for the shipping method "%s" does not correspond to the WC tax option for shipping zone "%s".', 'fiken'), $wcShippingCode, $zone);
-                        }
-                    }
-                }
-            }
             return $data;
         }
 

@@ -510,59 +510,6 @@ class FikenView
 
 
 
-            <!-- Shipping methods -->
-
-            <div class="panel">
-                <div class='form-group'>
-                    <label class='control-label'><?php _e('Shipping Methods','fiken') ;?></label>
-
-                    <div class='col-two-thirds'>
-                        <table class="table table-tax">
-                            <thead>
-                            <tr>
-                                <td class="text-left"><?php _e('Shipping method','fiken') ;?></td>
-                                <td class="text-left"><?php _e('Fiken VAT Type','fiken') ;?></td>
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <?php if (isset($list_shipping) &&  $list_shipping) { ?>
-                            <?php foreach ($list_shipping as  $ship) { ?>
-                            <?php  $fiken_shipping_key = "fiken_shipping_{$ship['id']}";?>
-
-                            <tr>
-                                <td class="text-left"><?php echo $ship['name'] ;?></td>
-                                <td class="text-left">
-                                    <select name="<?php echo $fiken_shipping_key  ;?>" id="<?php echo $fiken_shipping_key  ;?>" class="form-control settings_sel">
-
-                                        <?php if (!isset($list_vat_types_fiken_for_shipping) || !$list_vat_types_fiken_for_shipping) { ?>
-                                            <option value="" style='display:none;' selected="selected"> <?php _e('No Fiken VAT codes','fiken')  ;?></option>
-                                        <?php } elseif (!isset($selectedShipping) || !$selectedShipping || !isset($selectedShipping[$fiken_shipping_key]) || !$selectedShipping[$fiken_shipping_key]) { ?>
-                                            <option value="" style='display:none;' selected="selected"><?php _e('Select VAT code :','fiken')  ;?></option>
-                                        <?php } ;?>
-                                    <?php if (isset($list_vat_types_fiken_for_shipping) && $list_vat_types_fiken_for_shipping) {?>
-                                    <?php foreach ($list_vat_types_fiken_for_shipping as $vat) {?>
-                                         <option value="<?php echo $vat['code']  ;?>"
-                                        <?php if (isset($selectedShipping)  && isset($selectedShipping[$fiken_shipping_key]) &&  $selectedShipping[$fiken_shipping_key] == $vat['code']) { ?>
-                                            class="selected" selected="selected"
-                                        <?php };?>
-                                        >
-                                        <?php echo $vat['name']  ;?>
-                                        </option>
-                                     <?php }} ;?>
-                                    </select>
-                                </td>
-                            </tr>
-                            <?php } } else {?>
-                            <tr>
-                                <td class="text-center" colspan="6"><?php _e('No shipping methods!','fiken') ;?></td>
-                            </tr>
-                            <?php } ;?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
 
                 <!--Debug mode-->
                 <div class="panel">

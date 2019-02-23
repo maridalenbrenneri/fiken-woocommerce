@@ -410,6 +410,12 @@ if (!class_exists('FikenSale')) {
                 );
             }
 
+
+            /**
+             * Order log
+             */
+            FikenUtils::log(var_export($order_products, true), '\'Products debug: order products\'', FikenUtils::LOG_LEVEL_INFO);
+
             /**
              * Shipping
              */
@@ -438,8 +444,7 @@ if (!class_exists('FikenSale')) {
                                 }
 
                                 $shipVat = wc_round_tax_total($taxTotalValue);
-                                $shipping_method_id = preg_replace('/:.*/', '', $shipping_item['method_id']);
-                                $shipVatType = FikenProvider::getVatCodeForShipping($shipping_method_id);
+                                $shipVatType = FikenProvider::calculateVatCode($shipping_item['cost'], $taxTotalValue);
                                 /**
                                  * takes first not null tax
                                  */
@@ -461,7 +466,7 @@ if (!class_exists('FikenSale')) {
             /**
              * Shipping log
              */
-            FikenUtils::log(var_export($order->get_shipping_methods(), true), 'Shipping debug: order shipping methods', FikenUtils::LOG_LEVEL_INFO);
+            FikenUtils::log(var_export($order->get_shipping_methods(), true), '\'Shipping debug: order shipping methods\'', FikenUtils::LOG_LEVEL_INFO);
 
             /**
              * Fees
@@ -482,6 +487,7 @@ if (!class_exists('FikenSale')) {
              * Fees log
              */
             FikenUtils::log(var_export($order->get_fees(), true), 'Fee debug: order fees', FikenUtils::LOG_LEVEL_INFO);
+            FikenUtils::log(var_export($lines, true), 'ORDER LINES', FikenUtils::LOG_LEVEL_INFO);
 
             //check $sales["lines"] !=0
             if (FikenUtils::SKIP_EMPTY_PRICE && isset($lines)) {
@@ -521,6 +527,7 @@ if (!class_exists('FikenSale')) {
                     $packedLines[$line['vatType']]['vat'] = 0;
                     $packedLines[$line['vatType']]['vatType'] = $line['vatType'];
                 }
+                    
                 $packedLines[$line['vatType']]['netPrice'] += $line['netPrice'];
                 $packedLines[$line['vatType']]['vat'] += $line['vat'];
             }
@@ -535,6 +542,7 @@ if (!class_exists('FikenSale')) {
              */
             $packedLines = array_values($packedLines);
 
+            FikenUtils::log(var_export($packedLines, true), 'PACKED LINES', FikenUtils::LOG_LEVEL_INFO);
             /**
              * Convert all money values to fixed point
              */
@@ -544,7 +552,8 @@ if (!class_exists('FikenSale')) {
                 $line['vat'] = FikenUtils::moneyToCent($line['vat']);
                 array_push($lines, $line);
             }
-
+            FikenUtils::log(var_export($lines, true), 'FIKEN LINES', FikenUtils::LOG_LEVEL_INFO);
+            
             $sale->setLines($lines);
             $sale->setKind($saleKind);
             $sale->setPaymentAccount($acc);
