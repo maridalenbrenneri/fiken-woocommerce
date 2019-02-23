@@ -6,7 +6,7 @@
 Plugin Name: Fiken
 Plugin URI: https://www.fiken.no/
 Description: The Module is used for transferring orders to <a target='_blank' href = 'https://www.fiken.no'>Fiken</a>.
-Version: 1.17-MB-2
+Version: 1.17-MB-3
 Author: Fiken
 Author URI: https://www.fiken.no/
 License: GPLv2 or later
@@ -18,7 +18,7 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-define('FIKEN_VERSION', '1.17-MB-2');
+define('FIKEN_VERSION', '1.17-MB-3');
 define('FIKEN_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('FIKEN_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FIKEN_PLUGIN_BASENAME', plugin_basename(__FILE__));
