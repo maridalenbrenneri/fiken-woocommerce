@@ -401,13 +401,19 @@ if (!class_exists('FikenSale')) {
                     $netPrice = wc_round_tax_total($product['line_total']);
                     $vat = wc_round_tax_total($product['line_tax']);
                 }
-                $lines[] = array(
+                $line = array(
                     "description" => $product['qty'] . " x " . $product['name'],
                     "netPrice" => $netPrice,
                     "vat" => $vat,
-                    //"incomeAccount" => "3000",
                     "vatType" => FikenProvider::getVatCode($product)
                 );
+                // Hack - all our medium VAT products are 'egentilvirkede'
+                // Accounts for different products should probably be made configurable
+                // or properly linked to actual Fiken products
+                if ($line['vatType'] == FikenUtils::VAT_MEDIUM){
+                    $line['incomeAccount'] = '3040';
+                }
+                $lines[] = $line;
             }
 
 
@@ -457,7 +463,7 @@ if (!class_exists('FikenSale')) {
                         "description" => $shipping_item['name'],
                         "netPrice" => wc_round_tax_total($shipping_item['cost']),
                         "vat" => $shipVat,
-                        "incomeAccount" => "3090",
+                        // "incomeAccount" => "3090",
                         "vatType" => (($shipVat > 0) && ($shipVatType == FikenUtils::VAT_NONE) ? FikenUtils::VAT_HIGH : $shipVatType)
                     );
                 }
@@ -530,6 +536,10 @@ if (!class_exists('FikenSale')) {
                     
                 $packedLines[$line['vatType']]['netPrice'] += $line['netPrice'];
                 $packedLines[$line['vatType']]['vat'] += $line['vat'];
+                // Hack, should probably pack lines on account + vatType instead, or use proper product lines.
+                if (isset($line['incomeAccount'])){
+                    $packedLines[$line['vatType']]['incomeAccount'] = $line['incomeAccount'];
+                }
             }
 
             /**
