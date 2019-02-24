@@ -168,7 +168,7 @@ if (!class_exists('FikenUtils')) {
             $header = explode("\n", $header);
             foreach ($header as $head) {
                 if (stripos($head, $key) !== false) {
-                    $res = trim(str_replace($key, '', $head));
+                    $res = trim(str_ireplace($key, '', $head));
                 }
             }
             return $res;
