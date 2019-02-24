@@ -73,7 +73,7 @@ if (!class_exists('FikenUtils')) {
 			        $log->add('fiken', $title . ' :: ' . $mes);
 		        } else {
 			        $logger = wc_get_logger();
-			        $logger->log('debug', $mes, array( 'source' => 'fiken' ));
+			        $logger->log('debug', $title . ' :: ' . $mes, array( 'source' => 'fiken' ));
 		        }
 	        }
         }
@@ -97,7 +97,7 @@ if (!class_exists('FikenUtils')) {
             array_push($headers, 'User-Agent: ' . 'fiken/' . self::FIKEN_VERSION . ' woocommerce/' . WC_VERSION . ' wordpress/' . $wp_version);
             self::log($rel, 'CALL URI', self::LOG_LEVEL_INFO);
             if (isset($data) && $data) {
-                self::log(json_encode($data), 'CALL DATA', self::LOG_LEVEL_INFO);
+                self::log($json ? json_encode($data) : var_export($data, true), 'CALL DATA', self::LOG_LEVEL_INFO);
             }
 
             $ch = curl_init();
@@ -123,7 +123,6 @@ if (!class_exists('FikenUtils')) {
                 @curl_setopt($ch, CURLOPT_POSTFIELDS, $json ? json_encode($data) : $data);
             }
 
-
             $result = curl_exec($ch);
             $info = curl_getinfo($ch);
 
@@ -143,9 +142,14 @@ if (!class_exists('FikenUtils')) {
             $header = substr($result, 0, $info['header_size']);
             $body = substr($result, $info['header_size']);
 
+            $bodyLen = strlen($body);
+            $logbody = $body;
+            if ($bodyLen > 256){
+                $logbody = substr($body, 0, 256) . ' ... ';
+            }
 
             self::log($header, 'RESULT_HEADER', self::LOG_LEVEL_INFO);
-            self::log($body, 'RESULT_BODY', self::LOG_LEVEL_INFO);
+            self::log($logbody, 'RESULT_BODY', self::LOG_LEVEL_INFO);
 
             if (intval($info['http_code']) > 300) {
                 self::log($info['http_code'], 'HTTP status error code', self::LOG_LEVEL_ERROR);
