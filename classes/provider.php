@@ -123,7 +123,7 @@ if (!class_exists('FikenProvider')) {
                 }
             }
 
-            throw new Exception(sprintf(__('No WooCommerce tax rate matches calculated rate %0.2f', 'fiken', $vatRate)));
+            throw new Exception(sprintf(__('No WooCommerce tax rate matches calculated rate %0.2f', 'fiken'), $vatRate));
         }
 
         public static function getVatCodeByTaxCode($taxCode)
