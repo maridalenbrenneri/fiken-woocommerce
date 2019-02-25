@@ -90,7 +90,8 @@ if (!class_exists('FikenPDF')) {
         private function  getViewData()
         {
             $data = array();
-            $data['invoice_number'] = $this->order->id;
+            $invNumber = FikenProvider::getInvoiceNumber($this->order);
+            $data['invoice_number'] = !empty($invNumber) ? $invNumber :  $this->order->get_order_number();
             $data['order_date'] = substr($this->order->order_date, 0, 10);
             $data['payment_method'] = $this->order->payment_method_title;
             $data['billing_address'] = $this->order->get_formatted_billing_address();
