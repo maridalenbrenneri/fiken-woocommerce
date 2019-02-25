@@ -14,31 +14,6 @@ if (!class_exists('FikenHtmlInvoice')) {
                 <title>" . __('Invoice', 'fiken') . "</title>
                 <style type='text/css'>
 
-@font-face {
-	font-family: 'Open Sans';
-	font-style: normal;
-	font-weight: normal;
-	src: local('Open Sans'), local('OpenSans'), url(http://themes.googleusercontent.com/static/fonts/opensans/v7/yYRnAC2KygoXnEC8IdU0gQLUuEpTyoUstqEm5AMlJo4.ttf) format('truetype');
-}
-	@font-face {
-	font-family: 'Open Sans';
-	font-style: normal;
-	font-weight: bold;
-	src: local('Open Sans Bold'), local('OpenSans-Bold'), url(http://themes.googleusercontent.com/static/fonts/opensans/v7/k3k702ZOKiLJc3WVjuplzMDdSZkkecOE1hvV7ZHvhyU.ttf) format('truetype');
-}
-@font-face {
-	font-family: 'Open Sans';
-	font-style: italic;
-	font-weight: normal;
-	src: local('Open Sans Italic'), local('OpenSans-Italic'), url(http://themes.googleusercontent.com/static/fonts/opensans/v7/O4NhV7_qs9r9seTo7fnsVCZ2oysoEQEeKwjgmXLRnTc.ttf) format('truetype');
-}
-@font-face {
-	font-family: 'Open Sans';
-	font-style: italic;
-	font-weight: bold;
-	src: local('Open Sans Bold Italic'), local('OpenSans-BoldItalic'), url(http://themes.googleusercontent.com/static/fonts/opensans/v7/PRmiXeptR36kaC0GEAetxrQhS7CD3GIaelOwHPAPh9w.ttf) format('truetype');
-}
-
 @page {
 	margin-top: 1cm;
 	margin-bottom: 3cm;
@@ -49,7 +24,7 @@ body {
 	background: #fff;
 	color: #000;
 	margin: 0cm;
-	font-family: 'Open Sans', sans-serif;
+	font-family: 'DejaVu Sans', sans-serif;
 	font-size: 9pt;
 }
 
@@ -91,7 +66,7 @@ a {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
-	page-break-inside: always;
+	page-break-inside: avoid;
 }
 
 th, td {
@@ -153,7 +128,7 @@ table.order-details {
 }
 
 .order-details tr {
-	page-break-inside: always;
+	page-break-inside: avoid;
 	page-break-after: auto;
 }
 
